@@ -1,0 +1,30 @@
+{% extends "myapp/layout.html" %}
+
+{% block title %}Détail de la personne{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h1 class="h4 mb-0">Détail de la personne</h1>
+    </div>
+
+    <div class="card-body">
+        <p><strong>Prénom :</strong> {{ person.first_name }}</p>
+        <p><strong>Nom :</strong> {{ person.last_name }}</p>
+
+        <div class="d-flex gap-2">
+            <a href="{% url 'person_update' person.pk %}"
+               class="btn btn-warning">
+                Modifier
+            </a>
+
+            <a href="{% url 'person_list' %}"
+               class="btn btn-secondary">
+                Retour à la liste
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

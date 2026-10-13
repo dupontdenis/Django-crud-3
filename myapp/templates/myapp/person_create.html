@@ -1,0 +1,32 @@
+{% extends "myapp/layout.html" %}
+
+{% block title %}Créer une personne{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h1 class="h4 mb-0">Créer une personne</h1>
+    </div>
+
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    Créer
+                </button>
+
+                <a href="{% url 'person_list' %}"
+                   class="btn btn-secondary">
+                    Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

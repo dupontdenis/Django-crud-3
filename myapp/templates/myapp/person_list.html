@@ -1,0 +1,54 @@
+{% extends "myapp/layout.html" %}
+
+{% block title %}Liste des personnes{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Liste des personnes</h1>
+
+    <a href="{% url 'person_create' %}" class="btn btn-success">
+        Ajouter une personne
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        {% if persons %}
+            <ul class="list-group list-group-flush">
+                {% for person in persons %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                            {{ person.first_name }} {{ person.last_name }}
+                        </span>
+
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'person_detail' person.pk %}"
+                               class="btn btn-outline-primary btn-sm">
+                                Consulter
+                            </a>
+
+                            <a href="{% url 'person_update' person.pk %}"
+                               class="btn btn-outline-warning btn-sm">
+                                Modifier
+                            </a>
+
+                            <a href="{% url 'person_delete' person.pk %}"
+                               class="btn btn-outline-danger btn-sm">
+                                Supprimer
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted mb-0">
+                Aucune personne enregistrée.
+            </p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
